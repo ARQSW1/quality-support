@@ -33,10 +33,6 @@ Cuenta con una plataforma web que es monolítica encargada de realizar las sigui
 - Reportes internos (satisfacción de clientes, facturación proyectada)
 - Notificaciones vía mail
 
-de clientes, facturación proyectada)
-
--          Notificaciones vía mail
-
 Perfiles o Roles de USUARIO
 
 - Cliente usuario
@@ -127,3 +123,6 @@ Al autorización en los demás sistemas se encuentra a nivel INTERFACE (API o SP
 - LATENCIA EN LA AUTORIZACION , se recomienda una CHACHE de corta duración
 
 - Estar atento a componentes compartidos tanto en la UI como en la capa de negocio encapsularlos en una librerias. Ejemplo la capa de mensajería (ya esta separado en el diagrama)
+
+### POSIBILIDAD DE MEJORA
+Utilziar un sistema de reporting generico como jasper-reports. Ahora no se inlcuye
