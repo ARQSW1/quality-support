@@ -117,8 +117,8 @@ Al autorización en los demás sistemas se encuentra a nivel INTERFACE (API o SP
 - SPA : inhabilitar elementos a los que el usuario no tiene autorización mejora la experiencia de usuario
 
 ### NOTIFICACIONES
-Problema 4, Se opta por una arquitectura de microkernel a fin de poder extender los canales de notificacion sin alterar a los existentes.
 
+Problema 4, Se opta por una arquitectura de microkernel a fin de poder extender los canales de notificacion sin alterar a los existentes.
 
 ### DESVENTAJAS
 
@@ -129,4 +129,5 @@ Problema 4, Se opta por una arquitectura de microkernel a fin de poder extender 
 - Estar atento a componentes compartidos tanto en la UI como en la capa de negocio encapsularlos en una librerias. Ejemplo la capa de mensajería (ya esta separado en el diagrama)
 
 ### POSIBILIDAD DE MEJORA
-Utilziar un sistema de reporting generico como jasper-reports. Ahora no se inlcuye
+
+Utilizar un sistema de reporting genérico como jasper-reports. Ahora no se incluye
