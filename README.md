@@ -84,3 +84,4 @@ Proponga una arquitectura que solucione estos problemas. Dicha arquitectura debe
 - Puede separar la base de datos siempre y cuando el sistema conserve la cohesión / sinergia
 
 ## SOLUCION PROPUESTA
+![Diagrama estructural](./diagrama.drawio.svg)
