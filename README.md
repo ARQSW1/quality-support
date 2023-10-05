@@ -116,6 +116,10 @@ Al autorización en los demás sistemas se encuentra a nivel INTERFACE (API o SP
 - API esto es una buena práctica para que la capa de negocio sea agnóstica de la seguridad
 - SPA : inhabilitar elementos a los que el usuario no tiene autorización mejora la experiencia de usuario
 
+### NOTIFICACIONES
+Problema 4, Se opta por una arquitectura de microkernel a fin de poder extender los canales de notificacion sin alterar a los existentes.
+
+
 ### DESVENTAJAS
 
 - Migración de los usuario al OIDC Identity Provider
