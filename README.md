@@ -61,12 +61,13 @@ Perfiles o Roles de USUARIO
 
 ## PROBLEMAS
 
-Baja de todos los servicios en implementación (por su naturaleza monolítica).
-Cambios en la reglamentación impositiva son muy críticos, frecuentes y deben ser implementados en un plazo corto. Esto hace que muchas veces la cadencia de entrega de otros elementos este supeditada a estos cambios más que la satisfacción del cliente.
+1. Baja de todos los servicios en implementación (por su naturaleza monolítica).
 
-La base de datos del conocimiento consume muchos recursos (especialmente base de datos) que tiene un impacto negativo en la performance del todo el sistema.
+2. Cambios en la reglamentación impositiva son muy críticos, frecuentes y deben ser implementados en un plazo corto. Esto hace que muchas veces la cadencia de entrega de otros elementos este supeditada a estos cambios más que la satisfacción del cliente.
 
-Los clientes piden que se amplíen las notificaciones a canales como *Slack*, *Discord*, *Teams*, WhatsApp o Telegram.
+3. La base de datos del conocimiento consume muchos recursos (especialmente base de datos) que tiene un impacto negativo en la performance del todo el sistema.
+
+4. Los clientes piden que se amplíen las notificaciones a canales como *Slack*, *Discord*, *Teams*, WhatsApp o Telegram.
 
 ## TAREAS A REALIZAR
 
@@ -79,9 +80,50 @@ Proponga una arquitectura que solucione estos problemas. Dicha arquitectura debe
 
 **IMPORTANTE:**
 
-- Estamos obviando un tema que veremos en ARQ2 que es *Sharding *uqe es dividir o separar el sistema en varias instancias, por ejemplo: una por cliente.
+- Estamos obviando un tema que veremos en ARQ2 que es *Sharding* que es dividir o separar el sistema en varias instancias, por ejemplo: una por cliente.
 - Puede cambiar el tipo de motor de base de datos justificando ese cambio o al menos analizando sus ventajas y desventajas.
 - Puede separar la base de datos siempre y cuando el sistema conserve la cohesión / sinergia
 
 ## SOLUCION PROPUESTA
+
 ![Diagrama estructural](./diagrama.drawio.svg)
+
+PROBLEMAS 1, 2, 3 : La una arquitectura de micro servicios. Esto permite el desarrollo, implementación y mantenimiento independiente.
+
+**SUB-DOMINIOS CORE**
+
+- Facturación
+- Base del conocimiento
+- Tickets
+
+**SUB-DOMINIOS SUPPORTING**
+
+- Autorización
+- Notificaciones
+
+**SUB-DOMINIOS GENERIC**
+
+- Bases de datos
+- Bus de mensajes
+- OIDC Identity Provider
+
+### SEGURIDAD
+
+Al separar el sistema monolítico es necesario tener una experiencia de autenticación y autorización homogénea.
+
+**AUTORIZACION** utilizar OIDC permite utilizar SSO y también incorporar ID federados. Es decir que los clientes se puedan autenticar con credenciales de GMAIL, Outlook , etc.
+
+**AUTORIZACIÓN**: Se genera un nuevo servicio de autorización, que tiene una interface y permite administrar los usuarios y roles en TODOS los sistemas de manera centralizada.
+
+Al autorización en los demás sistemas se encuentra a nivel INTERFACE (API o SPA)
+
+- API esto es una buena práctica para que la capa de negocio sea agnóstica de la seguridad
+- SPA : inhabilitar elementos a los que el usuario no tiene autorización mejora la experiencia de usuario
+
+### DESVENTAJAS
+
+- Migración de los usuario al OIDC Identity Provider
+
+- LATENCIA EN LA AUTORIZACION , se recomienda una CHACHE de corta duración
+
+- Estar atento a componentes compartidos tanto en la UI como en la capa de negocio encapsularlos en una librerias. Ejemplo la capa de mensajería (ya esta separado en el diagrama)
